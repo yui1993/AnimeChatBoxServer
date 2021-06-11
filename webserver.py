@@ -4,7 +4,7 @@ def _get_verify_html(key, user):
     key = str(key)
     user = str(user)
     f = open("web/verify.html", "r")
-    cts = f.read().replace("{{key}}", key).replace("{{user}}", user)
+    cts = f.read().replace("{{key}}", key).replace("{{user}}", user).replace("{{domain}}", config.domain).replace("{{port}}", config.port).replace("{{protocol}}", config.websocket_protocol)
     f.close()
     return cts
 
@@ -12,7 +12,7 @@ def _get_html(key, user):
     key = str(key)
     user = str(user)
     f = open("web/forget.html", "r")
-    cts = f.read().replace("{{key}}", key).replace("{{user}}", user)
+    cts = f.read().replace("{{key}}", key).replace("{{user}}", user).replace("{{domain}}", config.domain).replace("{{port}}", config.port).replace("{{protocol}}", config.websocket_protocol)
     f.close()
     return cts
 
