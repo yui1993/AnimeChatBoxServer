@@ -8,7 +8,7 @@
     <script>
         var key = "{{key}}";
         var user = "{{user}}";
-        var ws = new WebSocket("wss://animechatbox.xyz");
+        var ws = new WebSocket("wss://{{domain}}:{{port}}");
         ws.onmessage = function(e) {
             var j = JSON.parse(e.data);
             if (j.verified){
