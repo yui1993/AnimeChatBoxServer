@@ -361,31 +361,3 @@ class Database:
         if ban: return True
         else: return False
 
-
-if __name__=="__main__":
-    db = Database()
-    #db.addRoom("help", "admin", title="Help Group", description="Group to get help with chat and updates")
-    #print(db.db.toDict())
-    #db.addUser("admin", "m.borgfield1@gmail.com", "Michael1993^")
-
-    #db.removeRoom("admin", "example")
-    #mid = util.generate_id()
-    #mid2 = util.generate_id()
-    #db.addMessage("example", "admin", "127.0.0.1", "some_uid", "message", mid)
-    #db.addMessage("example", "admin", "127.0.0.1", "some_uid", "message2", mid2)
-    #print(db.removeMessagesByUser("example", "admin"))
-    #otput=db.removeMessageById("example", mid2)
-    #print(otput)
-    #print(db.getAllMessagesByIp("127.0.0.1"))
-    #print(db.db.toDict())
-    #db.setup_db()
-    #db.addUser("admin", email="admin@animechatbox.xyz", password="Michael1993^")
-    #db.addRoom("example", "admin", title="Example Group", description="This Is An Example Group")
-    #db.addRoom("help", "admin", title="Help", description="Room to get help..")
-    #db.db['forgot'] = Objectify()
-    #db.setVerified("admin")
-    #db.save()
-    #db.db.set("verify", {})
-    #db.save()
-    #print(db.db.get("users").toDict())
-
