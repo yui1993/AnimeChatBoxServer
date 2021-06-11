@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </head>
+    <body>
+        <p id="text" align="center"></p>
+    </body>
+    <script>
+        var key = "{{key}}";
+        var user = "{{user}}";
+        var ws = new WebSocket("wss://animechatbox.xyz");
+        ws.onmessage = function(e) {
+            var j = JSON.parse(e.data);
+            if (j.verified){
+                $("#text").html("<b><font color='green'>Email Verified</font></b>");
+            } else {$("#text").html("<b><font color='purple'>Email Must Already Be Verified..</font></b>");}
+        }
+        ws.onopen = function() {ws.send(JSON.stringify({"verify": 1, "key": key, "name": user}))}
+    </script>
+</html>

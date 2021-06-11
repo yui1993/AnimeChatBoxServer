@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </head>
+    <body>
+        <div id="forgot-form" style="display: none;">
+            <label for="Password">New Password</label>
+            <br />
+            <input type="password" id="password">
+            <br />
+            <label for="confirm">Confirm Password</label>
+            <br />
+            <input type="password" id="confirm">
+            <br />
+            <span id="show-text"></span>
+            <br />
+            <button type="button" id="submit">Change Password</button>
+        </div>
+    </body>
+    <script>
+        var key = "{{key}}";
+        var user = "{{user}}";
+        var ws = new WebSocket("wss://animechatbox.xyz/");
+        ws.onmessage = function(e){
+            console.log(e.data)
+            var j = JSON.parse(e.data);
+            if(j.forgot) {
+                $("#show-text").html("<b><font color='green'>Password Changed</font></b>");
+            } else {
+                $("#show-text").html("<b><font color='red'>"+j.message+"</font></b>");
+            }
+            if (j.checked == 1) {
+                $("#forgot-form").css({"display": "block"});
+            }
+            
+        }
+        ws.onopen = function() {
+            console.log("connection open")
+            var j = {
+                "checkKey": 1,
+                "key": key,
+                "name": user
+            }
+            var cmd = JSON.stringify(j);
+            ws.send(cmd);
+        }
+        $("#submit").on("click", function(){
+            var password = $("#password").val();
+            var confirm = $("#confirm").val();
+            if (password == confirm){
+                $("#show-text").html("<b><font color='purple'>Sending...</font></b>")
+                var j = {
+                    "setpassword": 1,
+                    "name": user,
+                    "key": key,
+                    "password": password
+                };
+                var cmd = JSON.stringify(j);
+                ws.send(cmd);
+            } else{
+                $("#show-text").html("<b><font color='red'>Passwords don't match</font></b>");
+            }
+        });
+
+    </script>
+</html>
