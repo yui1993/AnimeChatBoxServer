@@ -17,5 +17,7 @@ allowed_attrs = {
 }
 if use_ssl:
     protocol = "https"
+    websocket_protocol = "wss"
 else:
     protocol = "http"
+    websocket_protocol = "ws"
